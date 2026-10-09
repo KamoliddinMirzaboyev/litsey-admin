@@ -125,7 +125,7 @@ export default function Kafedralar() {
       name_ru: dept.name_ru || "",
       description_uz: dept.description_uz || "",
       description_ru: dept.description_ru || "",
-      head_teacher: typeof dept.head_teacher === 'object' ? dept.head_teacher.id : dept.head_teacher || "",
+      head_teacher: (dept.head_teacher && typeof dept.head_teacher === 'object') ? dept.head_teacher.id : (dept.head_teacher || ""),
       subjects: dept.subjects || [],
       room_number: dept.room_number || "",
       phone: dept.phone || "",
@@ -308,7 +308,7 @@ export default function Kafedralar() {
               <div className="flex items-start gap-3 text-sm text-gray-500 dark:text-gray-400">
                 <Users className="w-4 h-4 mt-0.5 shrink-0 text-[#0d89b1]" />
                 <span className="font-medium">
-                  Mudiri: {typeof dept.head_teacher === 'object' ? dept.head_teacher.full_name : 'Tayinlanmagan'}
+                  Mudiri: {(dept.head_teacher && typeof dept.head_teacher === 'object') ? dept.head_teacher.full_name : 'Tayinlanmagan'}
                 </span>
               </div>
               <div className="flex items-start gap-3 text-sm text-gray-500 dark:text-gray-400">

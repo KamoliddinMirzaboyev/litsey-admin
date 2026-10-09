@@ -435,21 +435,7 @@ export default function Sozlamalar() {
                   </div>
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">Facebook</label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={formData.facebook || ""}
-                    onChange={(e) => setFormData({ ...formData, facebook: e.target.value })}
-                    className="w-full pl-4 pr-10 py-2.5 md:py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#0d89b1] outline-none transition-all dark:text-white text-sm"
-                    placeholder="facebook.com/litsey"
-                  />
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-                    <Share2 className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
+
               <div className="space-y-2">
                 <label className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">YouTube</label>
                 <div className="relative">
