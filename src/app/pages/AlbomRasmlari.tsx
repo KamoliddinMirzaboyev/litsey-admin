@@ -55,7 +55,7 @@ export default function AlbomRasmlari() {
         fetch(`${API_BASE_URL}/gallery/albums/${albumSlug}/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`${API_BASE_URL}/gallery/albums/${albumSlug}/photos`, {
+        fetch(`${API_BASE_URL}/gallery/albums/${albumSlug}/photos/`, {
           headers: { Authorization: `Bearer ${token}` },
         }).catch(() => null), // Catch network errors
       ]);
@@ -114,7 +114,7 @@ export default function AlbomRasmlari() {
       data.append("caption", formData.caption);
     }
 
-    const url = `${API_BASE_URL}/gallery/albums/${slug}/photos/bulk`;
+    const url = `${API_BASE_URL}/gallery/albums/${slug}/photos/bulk/`;
 
     try {
       await new Promise<void>((resolve, reject) => {

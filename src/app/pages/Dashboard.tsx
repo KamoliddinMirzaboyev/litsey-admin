@@ -33,12 +33,20 @@ export default function Dashboard() {
   const fetchDashboardData = async () => {
     setLoading(true);
     try {
+      const token = sessionStorage.getItem("auth_token");
+      const requestOptions = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
       const [teachersRes, newsRes, announcementsRes, managementRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/teachers`),
-        fetch(`${API_BASE_URL}/news`),
-        fetch(`${API_BASE_URL}/announcements`),
-        fetch(`${API_BASE_URL}/management`),
+        fetch(`${API_BASE_URL}/teachers/`, requestOptions),
+        fetch(`${API_BASE_URL}/news/`, requestOptions),
+        fetch(`${API_BASE_URL}/announcements/`, requestOptions),
+        fetch(`${API_BASE_URL}/management/`, requestOptions),
       ]);
+
+      if (![teachersRes, newsRes, announcementsRes, managementRes].every((response) => response.ok)) {
+        throw new Error("Dashboard API request failed");
+      }
 
       const [teachersData, newsData, announcementsData, managementData] = await Promise.all([
         teachersRes.json(),

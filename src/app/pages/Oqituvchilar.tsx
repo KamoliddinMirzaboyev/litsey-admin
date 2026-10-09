@@ -91,10 +91,10 @@ export default function Oqituvchilar() {
     try {
       const token = sessionStorage.getItem("auth_token");
       const [teacherRes, deptRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/teachers`, {
+        fetch(`${API_BASE_URL}/teachers/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`${API_BASE_URL}/departments`, {
+        fetch(`${API_BASE_URL}/departments/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -178,7 +178,7 @@ export default function Oqituvchilar() {
   const handleDelete = async (slug: string) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/teachers/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/teachers/${slug}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -239,8 +239,8 @@ export default function Oqituvchilar() {
 
     try {
       const url = editingTeacher
-        ? `${API_BASE_URL}/teachers/${editingTeacher.slug}`
-        : `${API_BASE_URL}/teachers`;
+        ? `${API_BASE_URL}/teachers/${editingTeacher.slug}/`
+        : `${API_BASE_URL}/teachers/`;
       const method = editingTeacher ? "PATCH" : "POST";
 
       const response = await fetch(url, {

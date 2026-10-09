@@ -71,7 +71,7 @@ export default function Yangiliklar() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/news`, {
+      const response = await fetch(`${API_BASE_URL}/news/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -144,7 +144,7 @@ export default function Yangiliklar() {
   const handleDelete = async (slug: string) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/news/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/news/${slug}/`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

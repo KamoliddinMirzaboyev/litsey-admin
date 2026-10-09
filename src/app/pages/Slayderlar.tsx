@@ -57,7 +57,7 @@ export default function Slayderlar() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/sliders`, {
+      const response = await fetch(`${API_BASE_URL}/sliders/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.ok) {
@@ -108,7 +108,7 @@ export default function Slayderlar() {
   const handleDelete = async (id: number) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/sliders/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/sliders/${id}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

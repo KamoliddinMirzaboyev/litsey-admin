@@ -30,8 +30,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const userData = sessionStorage.getItem("auth_user");
     if (token && userData) {
       try {
+        const parsedUser = JSON.parse(userData) as AuthUser;
+        const encodedPayload = token.split(".")[1] || "";
+        const base64 = encodedPayload.replace(/-/g, "+").replace(/_/g, "/");
+        const paddedBase64 = base64.padEnd(Math.ceil(base64.length / 4) * 4, "=");
+        const payload = JSON.parse(atob(paddedBase64)) as { exp?: number };
+        const isExpired = !payload.exp || payload.exp * 1000 <= Date.now();
+        if (parsedUser.role !== "admin" || isExpired) {
+          logout();
+          return;
+        }
         setIsAuthenticated(true);
-        setUser(JSON.parse(userData));
+        setUser(parsedUser);
       } catch (e) {
         console.error("Error parsing user data:", e);
         logout();
@@ -40,13 +50,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = () => {
-    setIsAuthenticated(true);
     const userData = sessionStorage.getItem("auth_user");
     if (userData) {
       try {
-        setUser(JSON.parse(userData));
+        const parsedUser = JSON.parse(userData) as AuthUser;
+        if (parsedUser.role !== "admin") {
+          logout();
+          return;
+        }
+        setUser(parsedUser);
+        setIsAuthenticated(true);
       } catch (e) {
         console.error("Error parsing user data on login:", e);
+        logout();
       }
     }
   };

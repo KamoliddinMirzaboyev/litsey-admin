@@ -72,10 +72,10 @@ export default function Kafedralar() {
     try {
       const token = sessionStorage.getItem("auth_token");
       const [deptRes, teacherRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/departments`, {
+        fetch(`${API_BASE_URL}/departments/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`${API_BASE_URL}/teachers`, {
+        fetch(`${API_BASE_URL}/teachers/`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -140,7 +140,7 @@ export default function Kafedralar() {
   const handleDelete = async (slug: string) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/departments/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/departments/${slug}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -184,8 +184,8 @@ export default function Kafedralar() {
 
     try {
       const url = editingDept
-        ? `${API_BASE_URL}/departments/${editingDept.slug}`
-        : `${API_BASE_URL}/departments`;
+        ? `${API_BASE_URL}/departments/${editingDept.slug}/`
+        : `${API_BASE_URL}/departments/`;
       const method = editingDept ? "PATCH" : "POST";
 
       const response = await fetch(url, {

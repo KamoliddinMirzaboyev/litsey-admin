@@ -1,4 +1,6 @@
-export const API_BASE_URL = "https://academiklitsey.pythonanywhere.com";
+export const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL || "https://api.fdtu1al.uz"
+).replace(/\/+$/, "");
 
 export const getImageUrl = (path: string | null) => {
   if (!path) return "";

@@ -19,6 +19,7 @@ import {
   HelpCircle,
   BarChart3,
   Film,
+  MessageSquare,
 } from "lucide-react";
 import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
@@ -36,6 +37,7 @@ const navItems = [
   { path: "/galereya", label: "Galereya", icon: Image },
   { path: "/videolar", label: "Videolar", icon: Film },
   { path: "/slayderlar", label: "Slayderlar", icon: LayoutDashboard },
+  { path: "/xabarlar", label: "Xabarlar", icon: MessageSquare },
   { path: "/sozlamalar", label: "Sozlamalar", icon: Settings },
 ];
 

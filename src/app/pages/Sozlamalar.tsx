@@ -78,7 +78,7 @@ export default function Sozlamalar() {
   const fetchSettings = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/settings`);
+      const response = await fetch(`${API_BASE_URL}/settings/`);
       if (response.status === 404) {
         setLoading(false);
         return;
@@ -145,7 +145,7 @@ export default function Sozlamalar() {
     }
 
     try {
-      const url = `${API_BASE_URL}/settings`;
+      const url = `${API_BASE_URL}/settings/`;
       const method = settings ? "PATCH" : "POST";
 
       const response = await fetch(url, {

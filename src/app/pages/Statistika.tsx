@@ -65,7 +65,7 @@ export default function Statistika() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/statistics`, {
+      const response = await fetch(`${API_BASE_URL}/statistics/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.ok) {
@@ -108,7 +108,7 @@ export default function Statistika() {
   const handleDelete = async (id: number) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/statistics/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/statistics/${id}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -128,8 +128,8 @@ export default function Statistika() {
     const token = sessionStorage.getItem("auth_token");
     try {
       const url = editingStat
-        ? `${API_BASE_URL}/statistics/${editingStat.id}`
-        : `${API_BASE_URL}/statistics`;
+        ? `${API_BASE_URL}/statistics/${editingStat.id}/`
+        : `${API_BASE_URL}/statistics/`;
       const method = editingStat ? "PATCH" : "POST";
 
       const response = await fetch(url, {

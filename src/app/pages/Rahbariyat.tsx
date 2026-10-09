@@ -69,7 +69,7 @@ export default function Rahbariyat() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/management`, {
+      const response = await fetch(`${API_BASE_URL}/management/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -128,7 +128,7 @@ export default function Rahbariyat() {
   const handleDelete = async (id: number) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/management/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/management/${id}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -178,8 +178,8 @@ export default function Rahbariyat() {
 
     try {
       const url = editingLeader
-        ? `${API_BASE_URL}/management/${editingLeader.id}`
-        : `${API_BASE_URL}/management`;
+        ? `${API_BASE_URL}/management/${editingLeader.id}/`
+        : `${API_BASE_URL}/management/`;
       const method = editingLeader ? "PATCH" : "POST";
 
       const response = await fetch(url, {

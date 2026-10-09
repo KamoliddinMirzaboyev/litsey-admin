@@ -1,41 +1,27 @@
 import { createBrowserRouter } from "react-router";
 import { Layout } from "./components/Layout";
-import Dashboard from "./pages/Dashboard";
-import Yangiliklar from "./pages/Yangiliklar";
-import Elonlar from "./pages/Elonlar";
-import Oqituvchilar from "./pages/Oqituvchilar";
-import Rahbariyat from "./pages/Rahbariyat";
-import Qabul from "./pages/Qabul";
-import Sozlamalar from "./pages/Sozlamalar";
-import DarsJadvali from "./pages/DarsJadvali";
-import Kafedralar from "./pages/Kafedralar";
-import Savollar from "./pages/Savollar";
-import Galereya from "./pages/Galereya";
-import AlbomRasmlari from "./pages/AlbomRasmlari";
-import Videolar from "./pages/Videolar";
-import Slayderlar from "./pages/Slayderlar";
-import Statistika from "./pages/Statistika";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
     children: [
-      { index: true, Component: Dashboard },
-      { path: "yangiliklar", Component: Yangiliklar },
-      { path: "elonlar", Component: Elonlar },
-      { path: "oqituvchilar", Component: Oqituvchilar },
-      { path: "rahbariyat", Component: Rahbariyat },
-      { path: "kafedralar", Component: Kafedralar },
-      { path: "savollar", Component: Savollar },
-      { path: "galereya", Component: Galereya },
-      { path: "galereya/:slug", Component: AlbomRasmlari },
-      { path: "videolar", Component: Videolar },
-      { path: "slayderlar", Component: Slayderlar },
-      { path: "statistika", Component: Statistika },
-      { path: "qabul", Component: Qabul },
-      { path: "sozlamalar", Component: Sozlamalar },
-      { path: "dars-jadvali", Component: DarsJadvali },
+      { index: true, lazy: async () => ({ Component: (await import("./pages/Dashboard")).default }) },
+      { path: "yangiliklar", lazy: async () => ({ Component: (await import("./pages/Yangiliklar")).default }) },
+      { path: "elonlar", lazy: async () => ({ Component: (await import("./pages/Elonlar")).default }) },
+      { path: "oqituvchilar", lazy: async () => ({ Component: (await import("./pages/Oqituvchilar")).default }) },
+      { path: "rahbariyat", lazy: async () => ({ Component: (await import("./pages/Rahbariyat")).default }) },
+      { path: "kafedralar", lazy: async () => ({ Component: (await import("./pages/Kafedralar")).default }) },
+      { path: "savollar", lazy: async () => ({ Component: (await import("./pages/Savollar")).default }) },
+      { path: "galereya", lazy: async () => ({ Component: (await import("./pages/Galereya")).default }) },
+      { path: "galereya/:slug", lazy: async () => ({ Component: (await import("./pages/AlbomRasmlari")).default }) },
+      { path: "videolar", lazy: async () => ({ Component: (await import("./pages/Videolar")).default }) },
+      { path: "slayderlar", lazy: async () => ({ Component: (await import("./pages/Slayderlar")).default }) },
+      { path: "statistika", lazy: async () => ({ Component: (await import("./pages/Statistika")).default }) },
+      { path: "qabul", lazy: async () => ({ Component: (await import("./pages/Qabul")).default }) },
+      { path: "xabarlar", lazy: async () => ({ Component: (await import("./pages/Xabarlar")).default }) },
+      { path: "sozlamalar", lazy: async () => ({ Component: (await import("./pages/Sozlamalar")).default }) },
+      { path: "dars-jadvali", lazy: async () => ({ Component: (await import("./pages/DarsJadvali")).default }) },
     ],
   },
 ]);

@@ -102,7 +102,7 @@ export default function Savollar() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/faqs`, {
+      const response = await fetch(`${API_BASE_URL}/faqs/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.ok) {
@@ -157,7 +157,7 @@ export default function Savollar() {
     setIsDeleting(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/faqs/${faqToDelete.id}`, {
+      const response = await fetch(`${API_BASE_URL}/faqs/${faqToDelete.id}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -181,8 +181,8 @@ export default function Savollar() {
     const token = sessionStorage.getItem("auth_token");
     try {
       const url = editingFaq
-        ? `${API_BASE_URL}/faqs/${editingFaq.id}`
-        : `${API_BASE_URL}/faqs`;
+        ? `${API_BASE_URL}/faqs/${editingFaq.id}/`
+        : `${API_BASE_URL}/faqs/`;
       const method = editingFaq ? "PATCH" : "POST";
 
       const response = await fetch(url, {

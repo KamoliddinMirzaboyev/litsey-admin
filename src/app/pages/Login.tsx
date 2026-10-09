@@ -34,7 +34,7 @@ export default function Login({ onLogin }: LoginProps) {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.role === "admin") {
         // Store auth token in sessionStorage
         sessionStorage.setItem("auth_token", data.access);
         sessionStorage.setItem("refresh_token", data.refresh);
@@ -42,10 +42,12 @@ export default function Login({ onLogin }: LoginProps) {
           "auth_user",
           JSON.stringify({
             username: username,
-            role: data.role || "Administrator",
+            role: data.role,
           })
         );
         onLogin();
+      } else if (response.ok) {
+        setError("Bu panelga faqat administratorlar kira oladi.");
       } else {
         setError(data.detail || "Login yoki parol noto'g'ri!");
       }

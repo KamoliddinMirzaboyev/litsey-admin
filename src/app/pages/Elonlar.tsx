@@ -71,7 +71,7 @@ export default function Elonlar() {
     setLoading(true);
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/announcements`, {
+      const response = await fetch(`${API_BASE_URL}/announcements/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -132,7 +132,7 @@ export default function Elonlar() {
   const handleDelete = async (slug: string) => {
     try {
       const token = sessionStorage.getItem("auth_token");
-      const response = await fetch(`${API_BASE_URL}/announcements/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/announcements/${slug}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
